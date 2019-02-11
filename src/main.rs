@@ -30,72 +30,32 @@ fn main() {
 		let choice = choice.trim() as &str;
 		match choice {
 			"1" | "1." | "+" => {
-				let mut choice = String::new();
 				println!("Enter the number you want to add to the current value of \"{}\".", sum);
-				io::stdin().read_line(&mut choice).unwrap_or_else(|err| {
-					eprintln!("Application Error: {}", err);
-					process::exit(1);
-				});
-				let choice:f64 = choice.trim().parse().unwrap_or_else(|err| {
-					eprintln!("Application Error: {}", err);
-					process::exit(1);
-				});
+				let choice = convert();
 				println!("{} + {} = {}", sum, choice, sum + choice);
 				sum += choice;
 			}
 			"2" | "2." | "-" => {
-				let mut choice = String::new();
 				println!("Enter the number you want to subtract to the current value of \"{}\".", sum);
-				io::stdin().read_line(&mut choice).unwrap_or_else(|err| {
-					eprintln!("Application Error: {}", err);
-					process::exit(1);
-				});
-				let choice:f64 = choice.trim().parse().unwrap_or_else(|err| {
-					eprintln!("Application Error: {}", err);
-					process::exit(1);
-				});
+				let choice = convert();
 				println!("{} - {} = {}", sum, choice, sum - choice);
 				sum -= choice;
 			}
 			"3" | "3." | "*" | "x" | "X" => {
-				let mut choice = String::new();
 				println!("Enter the number you want to multiply to the current value of \"{}\".", sum);
-				io::stdin().read_line(&mut choice).unwrap_or_else(|err| {
-					eprintln!("Application Error: {}", err);
-					process::exit(1);
-				});
-				let choice:f64 = choice.trim().parse().unwrap_or_else(|err| {
-					eprintln!("Application Error: {}", err);
-					process::exit(1);
-				});
+				let choice = convert();
 				println!("{} * {} = {}", sum, choice, sum * choice);
 				sum *= choice;
 			}
 			"4" | "4." | "/" | "÷" => {
-				let mut choice = String::new();
 				println!("Enter the number you want to divide to the current value of \"{}\".", sum);
-				io::stdin().read_line(&mut choice).unwrap_or_else(|err| {
-					eprintln!("Application Error: {}", err);
-					process::exit(1);
-				});
-				let choice:f64 = choice.trim().parse().unwrap_or_else(|err| {
-					eprintln!("Application Error: {}", err);
-					process::exit(1);
-				});
+				let choice = convert();
 				println!("{} / {} = {}", sum, choice, sum / choice);
 				sum /= choice;
 			}
 			"5" | "5." | "%" => {
-				let mut choice = String::new();
 				println!("Enter the number you want to see the remainder for to the current value of \"{}\".", sum);
-				io::stdin().read_line(&mut choice).unwrap_or_else(|err| {
-					eprintln!("Application Error: {}", err);
-					process::exit(1);
-				});
-				let choice:f64 = choice.trim().parse().unwrap_or_else(|err| {
-					eprintln!("Application Error: {}", err);
-					process::exit(1);
-				});
+				let choice = convert();
 				println!("{} % {} = {}", sum, choice, sum % choice);
 				sum %= choice;
 			}
@@ -109,4 +69,16 @@ fn main() {
 			}
 		}
 	}
+}
+fn convert()->f64 {
+	let mut choice = String::new();
+	io::stdin().read_line(&mut choice).unwrap_or_else(|err| {
+		eprintln!("Application Error: {}", err);
+		process::exit(1);
+	});
+	let choice:f64 = choice.trim().parse().unwrap_or_else(|err| {
+		eprintln!("Application Error: {}", err);
+		process::exit(1);
+				});
+	return choice;
 }
